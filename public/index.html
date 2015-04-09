@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReactiveX + Instagram</title>
+    <link rel="stylesheet" href="leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="Leaflet.label/dist/leaflet.label.css"/>
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body ng-app="rxDisplay">
+    <div class="container" ng-controller="MainCtrl">
+        <leaflet defaults="map" markers="markers"></leaflet>
+        <ul class="photos">
+            <li class="photo" ng-repeat="photo in photos">
+                <img ng-src="{{photo.url}}">
+                <span class="pushed-by">{{photo.pushedBy}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="angular/angular.min.js"></script>
+    <script src="leaflet/dist/leaflet.js"></script>
+    <script src="Leaflet.label/dist/leaflet.label.js"></script>
+    <script src="angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+
+    <script src="rx-display.js"></script>
+    <script src="main.ctrl.js"></script>
+</body>
+</html>
