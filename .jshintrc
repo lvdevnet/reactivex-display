@@ -1,0 +1,18 @@
+{
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "nonew": true,
+  "undef": true,
+  "unused": true,
+  "eqnull": true,
+  "esnext": true,
+  "browser": true,
+  "node": true
+}

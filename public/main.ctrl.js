@@ -1,28 +1,39 @@
+/* global angular, CBuffer, io */
 angular.module('rxDisplay')
-    .controller('MainCtrl', function($scope) {
+  .controller('MainCtrl', function($scope, $http) {
 
-        $scope.map = {
-            minZoom: 2,
-            zoomControl: false
-        };
+    $scope.map = {
+      minZoom: 2,
+      zoomControl: false
+    };
+    $scope.pics = [];
+    $scope.markers = [];
 
-        $scope.markers = [{
-            lat: 51.504976275,
-            lng: -0.087847965,
-            label: {
-                message: 'arkadijs',
-                options: {
-                    noHide: true
-                }
+    var pics = new CBuffer(100);
+    var addPic = function(pic) {
+      pics.unshift(pic);
+      $scope.pics = pics.toArray();
+      $scope.markers = $scope.pics.map(function(pic) {
+        return {
+          lat: pic.location.latitude,
+          lng: pic.location.longitude,
+          label: {
+            message: pic.participant,
+            options: {
+              noHide: true
             }
-        }];
-        
-        $scope.photos = [{
-            url: 'https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-15/10852816_867450063277168_105277875_n.jpg',
-            pushedBy: 'arkadijs'
-        }, {
-            url: 'https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-15/10860080_604009073076321_740245334_n.jpg',
-            pushedBy: 'arkadijs'
-        }];
+          }
+        };
+      });
+    };
 
+    $http.get('/in')
+      .success(function(data) {
+        data.forEach(addPic);
+      });
+
+    io().on('in', function(data) {
+      addPic(data);
     });
+
+  });
