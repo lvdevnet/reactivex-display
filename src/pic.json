@@ -10,19 +10,15 @@
       "pattern": "^https://.*instagram.com/.*\\.jpg$"
     },
     "location": {
-      "type": "object",
+      "type": ["null", "object"],
       "properties": {
         "latitude": {
-          "type": "number"
+          "type": ["null", "number"]
         },
         "longitude": {
-          "type": "number"
+          "type": ["null", "number"]
         }
-      },
-      "required": [
-        "latitude",
-        "longitude"
-      ]
+      }
     },
     "participant": {
       "type": "string",
@@ -32,7 +28,6 @@
   "required": [
     "tag",
     "url",
-    "location",
     "participant"
   ]
 }
