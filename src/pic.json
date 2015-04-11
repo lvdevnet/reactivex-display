@@ -17,12 +17,12 @@
         },
         "longitude": {
           "type": "number"
-        },
-        "required": [
-          "latitude",
-          "longitude"
-        ]
-      }
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ]
     },
     "participant": {
       "type": "string",
