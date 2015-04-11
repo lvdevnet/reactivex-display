@@ -1,11 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var pkg = require('../package.json');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var CBuffer = require('CBuffer');
-var instagram = require('./instagram');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../bower_components'));
@@ -25,14 +23,6 @@ var doPush = function(pic) {
   io.emit('in', pic);
 };
 
-var getMoreCats = function() {
-  instagram.byTag('cat').then(function(pics) {
-    pics.forEach(doPush);
-  });
-  setTimeout(getMoreCats, 5000);
-};
-getMoreCats();
-
 
 app.get('/in', function(req, res) {
   res.send(pushes.toArray());
@@ -40,7 +30,7 @@ app.get('/in', function(req, res) {
 
 app.post('/in', function(req, res) {
   doPush(req.body);
-  res.send(200);
+  res.sendStatus(200);
 });
 
 
