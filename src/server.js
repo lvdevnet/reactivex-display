@@ -11,10 +11,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../bower_components'));
 app.use(express.static(__dirname + '/../public'));
 
-app.get('/', function(req, res) {
-  res.send({version: pkg.version});
-});
-
 
 var pushes = new CBuffer(100);
 var doPush = function(pic) {
