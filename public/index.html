@@ -10,7 +10,7 @@
 <body ng-app="rxDisplay">
   <div class="container" ng-controller="MainCtrl">
     <leaflet defaults="map" markers="markers"></leaflet>
-    <ul class="photos">
+    <ul ng-if="pics.length > 0" class="photos">
       <li class="photo" ng-repeat="pic in pics | limitTo:10">
         <img ng-src="{{pic.url}}">
         <span class="pushed-by">{{pic.participant}}</span>

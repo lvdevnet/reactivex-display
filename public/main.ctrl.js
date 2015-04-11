@@ -4,7 +4,8 @@ angular.module('rxDisplay')
 
     $scope.map = {
       minZoom: 2,
-      zoomControl: false
+      zoomControl: false,
+      worldCopyJump: true
     };
     $scope.pics = [];
     $scope.markers = [];
