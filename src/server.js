@@ -21,7 +21,7 @@ var doPush = function(pic) {
     return;
   }
   console.log('[' + pic.participant + '] #' + pic.tag + ' ' + pic.url);
-  pushes.unshift(pic);
+  pushes.push(pic);
   io.emit('in', pic);
 };
 
