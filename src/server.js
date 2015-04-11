@@ -4,6 +4,8 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var CBuffer = require('CBuffer');
+var picSchema = require('./pic.json');
+var tv4 = require('tv4');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../bower_components'));
@@ -29,8 +31,12 @@ app.get('/in', function(req, res) {
 });
 
 app.post('/in', function(req, res) {
-  doPush(req.body);
-  res.sendStatus(200);
+  if (tv4.validate(req.body, picSchema)) {
+    doPush(req.body);
+    res.sendStatus(200);
+  } else {
+    res.status(400).send(tv4.error);
+  }
 });
 
 
