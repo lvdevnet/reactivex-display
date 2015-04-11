@@ -29,16 +29,18 @@ angular.module('rxDisplay')
       }
       console.log(pic);
 
-      shift20($scope.pics, pic);
-      shift20($scope.markers, {
-        lat: pic.location.latitude,
-        lng: pic.location.longitude,
-        label: {
-          message: pic.participant,
-          options: {
-            noHide: true
+      $scope.$apply(function() {
+        shift20($scope.pics, pic);
+        shift20($scope.markers, {
+          lat: pic.location.latitude,
+          lng: pic.location.longitude,
+          label: {
+            message: pic.participant,
+            options: {
+              noHide: true
+            }
           }
-        }
+        });
       });
     };
 
