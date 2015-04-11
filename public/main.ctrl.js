@@ -1,6 +1,6 @@
 /* global angular, CBuffer, io */
 angular.module('rxDisplay')
-  .controller('MainCtrl', function($scope, $http) {
+  .controller('MainCtrl', function($scope) {
 
     $scope.map = {
       minZoom: 2,
@@ -16,32 +16,31 @@ angular.module('rxDisplay')
       filter = filterMatch[1];
     }
 
-    var pics = new CBuffer(20);
+    var shift20 = function(arr, item) {
+      if (arr.length > 20) {
+        arr.pop();
+      }
+      arr.unshift(item);
+    };
+
     var addPic = function(pic) {
       if (filter != null && filter !== pic.participant) {
         return;
       }
       console.log(pic);
-      pics.unshift(pic);
-      $scope.pics = pics.toArray();
-      $scope.markers = $scope.pics.map(function(pic) {
-        return {
-          lat: pic.location.latitude,
-          lng: pic.location.longitude,
-          label: {
-            message: pic.participant,
-            options: {
-              noHide: true
-            }
+
+      shift20($scope.pics, pic);
+      shift20($scope.markers, {
+        lat: pic.location.latitude,
+        lng: pic.location.longitude,
+        label: {
+          message: pic.participant,
+          options: {
+            noHide: true
           }
-        };
+        }
       });
     };
-
-    $http.get('/in')
-      .success(function(data) {
-        data.forEach(addPic);
-      });
 
     io().on('in', function(data) {
       addPic(data);
