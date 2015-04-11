@@ -21,13 +21,13 @@ angular.module('rxDisplay')
         arr.pop();
       }
       arr.unshift(item);
+      console.log(item);
     };
 
     var addPic = function(pic) {
       if (filter != null && filter !== pic.participant) {
         return;
       }
-      console.log(pic);
 
       $scope.$apply(function() {
         shift20($scope.pics, pic);
