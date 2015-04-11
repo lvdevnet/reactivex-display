@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/../bower_components'));
 app.use(express.static(__dirname + '/../public'));
 
 
-var pushes = new CBuffer(100);
+var pushes = new CBuffer(20);
 var doPush = function(pic) {
   var exists = pushes.some(function(pushedPic) {
     return pushedPic.url === pic.url;

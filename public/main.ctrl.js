@@ -16,11 +16,12 @@ angular.module('rxDisplay')
       filter = filterMatch[1];
     }
 
-    var pics = new CBuffer(100);
+    var pics = new CBuffer(20);
     var addPic = function(pic) {
       if (filter != null && filter !== pic.participant) {
         return;
       }
+      console.log(pic);
       pics.unshift(pic);
       $scope.pics = pics.toArray();
       $scope.markers = $scope.pics.map(function(pic) {
