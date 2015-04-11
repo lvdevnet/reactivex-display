@@ -9,8 +9,17 @@ angular.module('rxDisplay')
     $scope.pics = [];
     $scope.markers = [];
 
+    var filter;
+    var filterMatch = location.search.match(/^\?participant=(.*)/);
+    if (filterMatch != null) {
+      filter = filterMatch[1];
+    }
+
     var pics = new CBuffer(100);
     var addPic = function(pic) {
+      if (filter != null && filter !== pic.participant) {
+        return;
+      }
       pics.unshift(pic);
       $scope.pics = pics.toArray();
       $scope.markers = $scope.pics.map(function(pic) {

@@ -11,7 +11,7 @@
   <div class="container" ng-controller="MainCtrl">
     <leaflet defaults="map" markers="markers"></leaflet>
     <ul class="photos">
-      <li class="photo" ng-repeat="pic in pics | limitTo:5">
+      <li class="photo" ng-repeat="pic in pics | limitTo:10">
         <img ng-src="{{pic.url}}">
         <span class="pushed-by">{{pic.participant}}</span>
       </li>
