@@ -22,7 +22,7 @@ ul.photos {
   overflow: hidden;
   width: 100%;
   height: 150px;
-  text-align: center;
+  text-align: right;
 }
 
 ul.photos li.photo {

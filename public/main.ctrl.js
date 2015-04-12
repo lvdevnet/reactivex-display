@@ -18,9 +18,9 @@ angular.module('rxDisplay')
 
     var shift20 = function(arr, item) {
       if (arr.length > 20) {
-        arr.pop();
+        arr.shift();
       }
-      arr.unshift(item);
+      arr.push(item);
     };
 
     var pic2marker = function(pic) {
